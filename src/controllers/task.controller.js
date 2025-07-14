@@ -5,9 +5,9 @@ const getTasks = (req, res) => {
   res.json(TaskService.getTasks());
 };
 
-const addTask = (req, res) => {
-  const { title, description } = req.body;
-  const task = TaskService.createTask(title, description);
+const createTask = (req, res) => {
+  const { title, description, priority, createdAt } = req.body;
+  const task = TaskService.createTask(title, description, priority, new Date(createdAt));
   res.status(201).json(task);
 };
 
@@ -38,4 +38,4 @@ const deleteTask = (req, res) => {
   res.status(204).send();
 };
 
-module.exports = { getTasks, addTask, updateTask, toggleTask, deleteTask };
+module.exports = { getTasks, createTask, updateTask, toggleTask, deleteTask };

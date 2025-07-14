@@ -6,23 +6,30 @@ const resetTasks = () => {
 let idCounter = 1;
 
 class Task {
-  constructor(title, description) {
+  constructor(title, description ) {
     this.id = idCounter++;
     this.title = title;
     this.description = description;
     this.completed = false;
     this.createdAt = new Date();
     this.updatedAt = new Date();
-    this.priority = 'low';
+    this.priority = 'low' || 'medium' || 'high';
   }
 }
 
 const getAllTasks = () => tasks;
-const addTask = (title, description, completed, createdAt, priority) => {
-  const task = new Task(title, description, completed, createdAt, priority);
+
+const createTask = (title, description, completed, createdAt, updatedAt, priority) => {
+  const task = new Task(title, description, completed, createdAt, updatedAt, priority);
   tasks.push(task);
   return task;
 };
+
+module.exports = {
+  createTask,
+  getAllTasks: () => tasks
+};
+
 const updateTask = (id, title, description, completed, updatedAt, priority) => {
   const task = tasks.find(t => t.id === id);
   if (task) {
@@ -47,4 +54,4 @@ const deleteTask = (id) => {
   tasks = tasks.filter(t => t.id !== id);
 };
 
-module.exports = { getAllTasks, addTask, updateTask, toggleTask, deleteTask, resetTasks };
+module.exports = { getAllTasks, createTask, updateTask, toggleTask, deleteTask, resetTasks };

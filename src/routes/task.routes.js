@@ -3,10 +3,6 @@ const express = require('express');
 const router = express.Router();
 const TaskController = require('../controllers/task.controller');
 
-router.get('/hello', (req, res) => {
-  res.json({ message: 'Hola desde el backend' });
-});
-
 /**
  * @swagger
  * tags:
@@ -60,7 +56,7 @@ router.get('/tasks', TaskController.getTasks);
  *             schema:
  *               $ref: '#/components/schemas/Task'
  */
-router.post('/tasks', TaskController.addTask);
+router.post('/tasks', TaskController.createTask);
 
 /**
  * @swagger

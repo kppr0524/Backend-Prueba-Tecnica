@@ -13,11 +13,14 @@ describe('Task Service', () => {
     const task = TaskService.createTask('Test Task', 'This is a test task');
     expect(task.title).toBe('Test Task');
     expect(task.description).toBe('This is a test task');
+    expect(task.completed).toBe(false);
+    expect(task.priority).toBe('low');
+    expect(task.createdAt).toBeInstanceOf(Date);
   });
 
   test('should get all tasks', () => {
-    TaskService.createTask('Test Task 1', 'Description 1');
-    TaskService.createTask('Test Task 2', 'Description 2');
+    TaskService.createTask('Test Task 1', 'Description 1', false, new Date(), new Date(), 'low');
+    TaskService.createTask('Test Task 2', 'Description 2', false, new Date(), new Date(), 'high');
     const tasks = TaskService.getTasks();
     expect(tasks.length).toBe(2);
   });
