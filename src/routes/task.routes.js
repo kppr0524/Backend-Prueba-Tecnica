@@ -3,6 +3,10 @@ const express = require('express');
 const router = express.Router();
 const TaskController = require('../controllers/task.controller');
 
+router.get('/hello', (req, res) => {
+  res.json({ message: 'Hola desde el backend' });
+});
+
 /**
  * @swagger
  * tags:
@@ -26,7 +30,7 @@ const TaskController = require('../controllers/task.controller');
  *               items:
  *                 $ref: '#/components/schemas/Task'
  */
-router.get('/', TaskController.getTasks);
+router.get('/tasks', TaskController.getTasks);
 
 /**
  * @swagger
@@ -56,7 +60,7 @@ router.get('/', TaskController.getTasks);
  *             schema:
  *               $ref: '#/components/schemas/Task'
  */
-router.post('/', TaskController.addTask);
+router.post('/tasks', TaskController.addTask);
 
 /**
  * @swagger
@@ -95,7 +99,7 @@ router.post('/', TaskController.addTask);
  *       404:
  *         description: Tarea no encontrada
  */
-router.put('/:id', TaskController.updateTask);
+router.put('/tasks/:id', TaskController.updateTask);
 
 /**
  * @swagger
@@ -120,7 +124,7 @@ router.put('/:id', TaskController.updateTask);
  *       404:
  *         description: Tarea no encontrada
  */
-router.patch('/:id/toggle', TaskController.toggleTask);
+router.patch('/tasks/:id/toggle', TaskController.toggleTask);
 
 /**
  * @swagger
@@ -141,6 +145,6 @@ router.patch('/:id/toggle', TaskController.toggleTask);
  *       404:
  *         description: Tarea no encontrada
  */
-router.delete('/:id', TaskController.deleteTask);
+router.delete('/tasks/:id', TaskController.deleteTask);
 
 module.exports = router;

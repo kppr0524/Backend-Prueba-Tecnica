@@ -7,10 +7,10 @@ const taskRoutes = require('./routes/task.routes');
 
 const app = express();
 app.use(bodyParser.json());
-app.use('/api/tasks', taskRoutes);
+app.use('/api', taskRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
